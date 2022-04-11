@@ -1,5 +1,9 @@
 # Nova Combobox Filter
 
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/harrald/nova-combobox-filter.svg?style=flat-square)](https://packagist.org/packages/harrald/nova-combobox-filter)
+[![Total Downloads](https://img.shields.io/packagist/dt/harrald/nova-combobox-filter.svg?style=flat-square)](https://packagist.org/packages/harrald/nova-combobox-filter)
+
 This component is based on the [Headless UI Combobox component](https://headlessui.dev/vue/combobox) and adds a multiselect filter to Laravel Nova. 
 
 ## Requirements
