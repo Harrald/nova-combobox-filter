@@ -82,7 +82,6 @@ let selectedOptions = computed(() => options.value.filter(function (option) {
 let filteredOptions = computed(() => query.value === '' ? options.value : options.value.filter(option => {
     return query.value === '' || option.label.toLowerCase().includes(query.value.toLowerCase());
 }));
-let selectedOptionsString = computed(() => selectedOptions.value.map(option => option.label).join(', '));
 
 watch(selectedValue, function() {
     handleChange();
