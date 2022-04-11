@@ -293,16 +293,22 @@ function onClick(e) {
         bottom: 0;
         left: 0;
 
-        &--is-selected {
-            display: flex;
-            fill: currentColor;
-        }
-
         & > * {
             width: 1.25rem;
             aspect-ratio: 1/1;
-            fill: rgba(var(--colors-primary-500));
         }
+
+        &--is-selected {
+            display: flex;
+
+            & > * {
+                fill: rgba(var(--colors-primary-500));
+            }
+        }
+    }
+
+    &:hover &__icon--is-selected > * {
+        fill: currentColor;
     }
 }
 </style>
