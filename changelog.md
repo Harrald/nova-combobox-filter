@@ -9,19 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- add `license.md`
-- add this `changelog.md`
-- add packagist shields to `readme.md`
-- removed unused code
-- denote Laravel Nova dependency in `composer.json`
+- Add `license.md`
+- Add this `changelog.md`
+- Add packagist shields to `readme.md`
+- Removed unused code
+- Denote Laravel Nova dependency in `composer.json`
 
 ## [1.0.1] - 2022-04-11
 
 ### Changed
 
-- make checkmark svg different color then background
+- Make checkmark svg different color then background
 
 ## [1.0.0] - 2022-04-11
 
 Initial release.
-combobox/multiselect filter for Nova 4. Based on [Headless UI Combobox component](https://headlessui.dev/vue/combobox)
+Combobox/multiselect filter for Nova 4. Based on [Headless UI Combobox component](https://headlessui.dev/vue/combobox)
