@@ -17,9 +17,10 @@ Install via Composer:
 `composer require harrald/nova-combobox-filter`
 
 ## Screenshots
-![multi options selected](readme/img/multiselect.png =289x380)
+<img src="readme/img/multiselect.png" alt="multi options selected" title="multi options selected" width="285" height="380">
 
-![filter options by typing](readme/img/typing.png =285x384)
+<img src="readme/img/typing.png" alt="filter options by typing" title="filter options by typing" width="285" height="380">
+
 
 ## Credits
 
