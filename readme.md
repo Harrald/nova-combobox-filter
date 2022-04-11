@@ -16,6 +16,11 @@ Install via Composer:
 
 `composer require harrald/nova-combobox-filter`
 
+## Screenshots
+![multi options selected](readme/img/multiselect.png =289x380)
+
+![filter options by typing](readme/img/typing.png =285x384)
+
 ## Credits
 
 This package was inspired by [optimistdigital/nova-multiselect-filter](https://github.com/optimistdigital/nova-multiselect-filter)
