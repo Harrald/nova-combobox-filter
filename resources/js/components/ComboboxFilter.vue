@@ -3,7 +3,7 @@
         <span>{{ filter.name }}</span>
         <template #filter>
             <div class="relative">
-                <Combobox v-model="selectedValue">
+                <Combobox v-model="selectedValue" multiple>
                     <div class="combobox-input-container" @click="onClick">
                         <div class="selected-option-button-list" ref="selectedOptionListEl">
                             <button
@@ -76,9 +76,7 @@ let selectedValue = ref([]);
 let selectedOptionListEl = ref(null);
 let filter = computed(() => store.getters[`${resourceName.value}/getFilter`](filterKey.value));
 let options = computed(() => filter.value.options);
-let selectedOptions = computed(() => options.value.filter(function (option) {
-    return selectedValue.value.includes(option.value);
-}));
+let selectedOptions = computed(() => options.value.filter(option => selectedValue.value.includes(option.value)));
 let filteredOptions = computed(() => query.value === '' ? options.value : options.value.filter(option => {
     return query.value === '' || option.label.toLowerCase().includes(query.value.toLowerCase());
 }));

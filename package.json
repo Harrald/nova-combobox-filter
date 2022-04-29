@@ -17,7 +17,7 @@
     "vue-loader": "^16.8.3"
   },
   "dependencies": {
-    "@headlessui/vue": "^0.0.0-insiders.ab6310c",
+    "@headlessui/vue": "^1.6.0",
     "sass": "^1.43.4"
   }
 }
