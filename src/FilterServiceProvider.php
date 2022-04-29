@@ -13,7 +13,7 @@ class FilterServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Nova::serving(function (ServingNova $event) {
             Nova::script('nova-combobox-filter', __DIR__.'/../dist/js/filter.js');
@@ -25,7 +25,7 @@ class FilterServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }

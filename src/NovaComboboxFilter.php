@@ -2,10 +2,11 @@
 
 namespace Harrald\NovaComboboxFilter;
 
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Filters\Filter;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class NovaComboboxFilter extends Filter
+abstract class NovaComboboxFilter extends Filter
 {
     /**
      * The filter's component.
@@ -17,24 +18,29 @@ class NovaComboboxFilter extends Filter
     /**
      * Apply the filter to the given query.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param NovaRequest $request
+     * @param  Builder  $query
      * @param  mixed  $value
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
-    public function apply(NovaRequest $request, $query, $value)
+    public function apply(NovaRequest $request, $query, $value): Builder
     {
-        return $query;
+        return $query->whereIn($this->columnName(), $value);
     }
 
     /**
      * Get the filter's available options.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function options(NovaRequest $request)
     {
-        return [];
+        return [
+            'Foo' => 'foo',
+            'Bar' => 'bar',
+        ];
     }
+
+    abstract protected function columnName(): string;
 }
