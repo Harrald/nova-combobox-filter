@@ -101,9 +101,9 @@ public function filters(NovaRequest $request): array
 
 
 ## Screenshots
-<img src="readme/img/multiselect.png" alt="multi options selected" title="multi options selected" width="285" height="380">
+<img src="https://raw.githubusercontent.com/Harrald/nova-combobox-filter/main/readme/img/multiselect.png" alt="multi options selected" title="multi options selected" width="285" height="380">
 
-<img src="readme/img/typing.png" alt="filter options by typing" title="filter options by typing" width="285" height="380">
+<img src="https://raw.githubusercontent.com/Harrald/nova-combobox-filter/main/readme/img/typing.png" alt="filter options by typing" title="filter options by typing" width="285" height="380">
 
 
 ## Credits
