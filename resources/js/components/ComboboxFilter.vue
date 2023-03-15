@@ -86,7 +86,7 @@ watch(selectedValue, function() {
     query.value = '';
 });
 
-selectedValue.value = Array.from(filter.value.currentValue);
+setCurrentFilterValue();
 
 onMounted(function(){
     Nova.$on('filter-reset', setCurrentFilterValue);
@@ -97,7 +97,7 @@ onBeforeUnmount(function(){
 });
 
 function setCurrentFilterValue() {
-    selectedValue.value = filter.value.currentValue;
+    selectedValue.value = Array.from(filter.value.currentValue);
 }
 
 function handleChange() {
