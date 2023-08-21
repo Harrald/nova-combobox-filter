@@ -3,6 +3,7 @@
 namespace Harrald\NovaComboboxFilter;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Laravel\Nova\Filters\Filter;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -32,7 +33,7 @@ abstract class NovaComboboxFilter extends Filter
      * Get the filter's available options.
      *
      * @param NovaRequest $request
-     * @return array
+     * @return array|Collection
      */
     public function options(NovaRequest $request)
     {
