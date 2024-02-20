@@ -1,6 +1,9 @@
 <template>
     <FilterContainer>
-        <span>{{ filter.name }}</span>
+        <span>{{ filter.name }}
+            <button @click="toggleShowOptionsWide" v-if="!showOptionsWide" aria-label="wide"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg></button>
+            <button @click="toggleShowOptionsWide" v-if="showOptionsWide" aria-label="narrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25" /></svg></button>
+        </span>
         <template #filter>
             <div class="relative">
                 <Combobox v-model="selectedValue" multiple>
@@ -32,7 +35,7 @@
                             v-slot="{active, selected}"
                         >
                             <li class="combobox-option" :class="{'combobox-option--is-active': active, 'combobox-option--is-selected': selected}">
-                                <span class="combobox-option__label">{{ option.label }}</span>
+                                <span class="combobox-option__label" :class="{'combobox-option__label--wide': showOptionsWide}">{{ option.label }}</span>
                                 <span class="combobox-option__icon" :class="{'combobox-option__icon--is-selected': selected}">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                                 </span>
@@ -71,6 +74,7 @@ const resourceName = toRef(props, 'resourceName');
 const filterKey = toRef(props, 'filterKey');
 const lens = toRef(props, 'lens');
 
+let showOptionsWide = ref(false);
 let query = ref('');
 let selectedValue = ref([]);
 let selectedOptionListEl = ref(null);
@@ -90,11 +94,22 @@ setCurrentFilterValue();
 
 onMounted(function(){
     Nova.$on('filter-reset', setCurrentFilterValue);
+    Nova.$on('nova-combobox-filter-options-wide', setShowOptionsWide)
 });
 
 onBeforeUnmount(function(){
     Nova.$off('filter-reset', setCurrentFilterValue);
+    Nova.$off('nova-combobox-filter-options-wide', setShowOptionsWide);
 });
+
+function toggleShowOptionsWide() {
+    showOptionsWide.value = !showOptionsWide.value;
+    Nova.$emit('nova-combobox-filter-options-wide', showOptionsWide.value)
+}
+
+function setShowOptionsWide(value) {
+    showOptionsWide.value = value;
+}
 
 function setCurrentFilterValue() {
     selectedValue.value = Array.from(filter.value.currentValue);
@@ -139,6 +154,7 @@ function onClick(e) {
         border-color: rgb(var(--colors-gray-700));
         --tw-ring-color: rgb(var(--colors-gray-700));
     }
+
     &:focus-within {
         border-color: rgba(var(--colors-primary-300));
         box-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color),
@@ -264,6 +280,8 @@ function onClick(e) {
     position: relative;
     color: inherit;
     user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &--is-selected {
         font-weight: bold;
@@ -277,8 +295,10 @@ function onClick(e) {
 
     &__label {
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
+        &--wide {
+            word-break: break-all;
+        }
     }
 
     &__icon {
